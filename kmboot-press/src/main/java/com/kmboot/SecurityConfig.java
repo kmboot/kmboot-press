@@ -34,15 +34,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity
 				//
-				.csrf().disable()
+				.csrf().and()
 				// exception handler
 				.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				// use session
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS).and().authorizeRequests()
 				// login
 				.antMatchers("/login/**", "/captchaImage", "/websocket/**").anonymous()
-				//
-				.antMatchers(HttpMethod.GET, "/**/*.ico", "/*.html", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
+				// static
+				.antMatchers(HttpMethod.GET, "/","/**/*.ico","/webjars/**", "/*.html", "/**/*.jpg","/**/*.png","/**/*.css", "/**/*.js").permitAll()
 				//
 				.antMatchers("/swagger-ui.html").anonymous().antMatchers("/swagger-resources/**").anonymous()
 				.antMatchers("/*/api-docs").anonymous()

@@ -49,6 +49,8 @@ public class KMUserRepositoryTest extends AbstractTransactionalJUnit4SpringConte
 		list.stream().map(e -> e.toString()).forEach(log::info);
 		Assert.assertNotNull(list);
 		Assert.assertTrue("size not empty", list.size() > 0);
+		entity.setEmail("mead" + entity.getId() + "@kmboot.com");
+		this.repository.save(entity);
 //		this.repository.delete(entity);
 	}
 }

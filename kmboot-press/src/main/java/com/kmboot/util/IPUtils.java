@@ -1,4 +1,4 @@
-package com.kmboot.system.util;
+package com.kmboot.util;
 
 import java.util.Arrays;
 import java.util.List;

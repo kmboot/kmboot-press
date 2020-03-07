@@ -34,8 +34,8 @@ import org.springframework.transaction.PlatformTransactionManager;
  */
 
 @Configuration
-@EnableJpaRepositories(basePackages = { "com.kmboot.system.jpa" }, entityManagerFactoryRef = "emf")
-@EntityScan("com.kmboot.system.jpa")
+//@EnableJpaRepositories(basePackages = { "com.kmboot.system.jpa" }, entityManagerFactoryRef = "entityManagerFactory")
+@EnableJpaRepositories(basePackages = { "com.kmboot" })
 public class EntityManagerConfig {
 
 	@Autowired
@@ -52,8 +52,8 @@ public class EntityManagerConfig {
 	 * 
 	 * @return
 	 */
-	@Bean("emf")
-	public LocalContainerEntityManagerFactoryBean kmJpaEntityManagerFactoryBean() {
+	@Bean("entityManagerFactory")
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		// vendorAdapter.setDatabase(Database.ORACLE);
 		vendorAdapter.setShowSql(true);
@@ -70,7 +70,7 @@ public class EntityManagerConfig {
 		return entityManagerFactory;
 	}
 
-	@Bean
+	@Bean("transactionManager")
 	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(emf);
